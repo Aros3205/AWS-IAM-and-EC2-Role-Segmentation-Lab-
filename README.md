@@ -56,8 +56,8 @@ This foundational project strengthens AWS security concepts that are essential f
   - `Sales-Instance`
   - `Marketing-Instance`
 
-> 📌 Screenshot Placeholder  
-> `![EC2 Instances](screenshots/ec2.png)`
+> ![AWS IAM & EC2 Role Segmentation — Screenshot](/mnt/data/IMG_F1022E39-E5A9-45CA-9BD3-F1AB153C35E7.jpeg)
+
 
 ---
 
