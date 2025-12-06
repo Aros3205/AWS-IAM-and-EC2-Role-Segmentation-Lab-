@@ -60,7 +60,8 @@ This foundational project strengthens AWS security concepts that are essential f
 
 ![AWS IAM & EC2 – Example Screenshot](screenshot/Screenshot%202025-12-05%20095134.png)
 
----
+![Screenshot](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-05%20094504.png)
+
 
 ### **3️⃣ Create Department S3 Buckets**
 Create buckets:
