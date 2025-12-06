@@ -89,8 +89,7 @@ Example rules:
 - deny modify
 - allow read/write only inside own folder
 
-> 📌 Screenshot Placeholder  
-> `![IAM Policy](screenshots/iam-policy.png)`
+![AWS IAM & EC2 Screenshot](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-05%20084712.png)
 
 ---
 
