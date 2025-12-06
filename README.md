@@ -86,25 +86,7 @@ Example rules:
 
 ---
 
-### **5️⃣ Test Role Segmentation**
-Login as Sales user:
-- Should access Sales-Instance + Sales S3 only
-
-Login as Marketing user:
-- Should access Marketing-Instance + Marketing S3 only
-
-Attempt cross-access:
-- should be **denied**
-
----
-
-### **6️⃣ Enable CloudTrail Logging**
-Enable AWS CloudTrail to track:
-- IAM logins
-- S3 access attempts
-- Denied actions
-- EC2 activity
-
+### **5️⃣  Create CloudTrail **
 > 📌 Screenshot Placeholder  
 > `![CloudTrail](screenshots/cloudtrail.png)`
 
@@ -147,13 +129,6 @@ This project demonstrates how security teams restrict access inside cloud enviro
 
 ---
 
-### 📂 Screenshots Folder
-All screenshots will be uploaded here later:
-```
-📁 /screenshots
-```
-
----
 
 ## 🔗 Connect
 More cybersecurity labs are continuously being added. Follow this repository and my LinkedIn for updates.
