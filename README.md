@@ -73,7 +73,8 @@ These will later be permission restricted.
 
 ![Screenshot](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-06%20044614.png)
 
-![Screenshot](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-05%20095606.png)
+![](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-06%20045414.png)
+
 
 ### **4️⃣ Build IAM Security Policies**
 Assign:
