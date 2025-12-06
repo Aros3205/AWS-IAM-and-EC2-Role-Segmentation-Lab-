@@ -71,8 +71,7 @@ Create buckets:
 
 These will later be permission restricted.
 
-![AWS IAM & EC2 Role Segmentation Screenshot](screenshot/Screenshot%202025-12-05%20094504.png)
-
+![Screenshot](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-05%20094504.png)
 
 ### **4️⃣ Build IAM Security Policies**
 Assign:
