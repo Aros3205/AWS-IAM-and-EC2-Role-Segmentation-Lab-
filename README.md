@@ -75,6 +75,8 @@ These will later be permission restricted.
 
 ![](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-06%20045414.png)
 
+![AWS Segmentation](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-06%20045601.png)
+
 
 ### **4️⃣ Build IAM Security Policies**
 Assign:
