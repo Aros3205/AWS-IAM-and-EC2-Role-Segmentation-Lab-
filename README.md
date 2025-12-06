@@ -73,7 +73,6 @@ These will later be permission restricted.
 
 ![AWS IAM & EC2 Role Segmentation Screenshot](screenshot/Screenshot%202025-12-05%20094504.png)
 
----
 
 ### **4️⃣ Build IAM Security Policies**
 Assign:
