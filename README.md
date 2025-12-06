@@ -1,161 +1,150 @@
-# AWS IAM & EC2 Role Segmentation Project
+# AWS IAM & EC2 Role Segmentation – Project
 
-## 📌 Overview
-This project demonstrates how Identity & Access Management (IAM) principles are applied within AWS to enforce role-based access control (RBAC) between cloud resources. I designed two IAM users and two EC2 instances representing separate departments (Sales and Marketing) and applied security policies to segment privileges, preventing unauthorized resource access across departments.
-
-This foundational project strengthens AWS security concepts that are essential for Cybersecurity Analysts—such as least privilege, IAM policy enforcement, cloud resource access auditing, and privilege segregation.
+## 🎯 Objective
+This project focuses on building foundational AWS security skills by configuring IAM, launching EC2 instances, creating S3 buckets, and preparing the environment for role-based access segmentation. The ultimate goal is to enforce departmental separation between AWS users such as **Sales** and **Marketing**, ensuring least-privilege access based on business roles.
 
 ---
 
-## 🔥 Project Objectives
-
-- Configure secure IAM users
-- Launch and configure EC2 instances
-- Create an S3 bucket for each department
-- Assign permissions based on job role
-- Prevent unauthorized cross-access
-- Apply least-privilege principles
-- Audit activity using CloudTrail
+## 🧰 AWS Services Involved
+- **IAM** (Users, Groups, Policies)
+- **EC2**
+- **S3**
+- **CloudTrail**
+- **AWS Console Security Settings**
 
 ---
 
-## 🏗 Architecture Summary
+## 🏗️ Architecture Overview
+The project simulates two departments inside an organization:
 
-| AWS Service | Purpose |
-|------------|---------|
-| IAM | Identity, access, security |
-| EC2 | Compute resource (department systems) |
-| S3 | Storage for departmental files |
-| CloudTrail | Logging and auditing |
-| IAM Policies | Access control enforcement |
+| Department | AWS IAM User | EC2 Instance | S3 Resource |
+|-----------|--------------|--------------|-------------|
+| Sales     | sales-user   | sales-instance | sales S3 bucket |
+| Marketing | marketing-user | (To be added later) | marketing S3 bucket (later) |
 
----
-
-## 🚀 Step-by-Step Implementation
-
-### **1️⃣ Create IAM Users**
-- Go to **IAM → Users → Create user**
-- Create:
-  - `Sales_User`
-  - `Marketing_User`
-
-🔹 Users created without admin privileges  
-🔹 Will receive access only through custom IAM policies  
-
-> 📌 Screenshot Placeholder  
-> `![Create IAM User](screenshots/create-user.png)`
+This setup prepares us for eventual access segmentation where each department will only access its related compute and storage resources.
 
 ---
 
-### **2️⃣ Launch EC2 Instances**
-- Navigate to **EC2**
-- Create two instances:
-  - `Sales-Instance`
-  - `Marketing-Instance`
-
-> 📌 Screenshot Placeholder  
-> `![EC2 Instances](screenshots/ec2.png)`
+# 🚀 Step-by-Step Implementation
 
 ---
 
-### **3️⃣ Create Department S3 Buckets**
-Create buckets:
-- `rg-sales-bucket`
-- `rg-marketing-bucket`
+## **Step 1 — Create IAM Users**
+### Actions
+- Open IAM console
+- Create IAM user (example: `sales-user`)
+- Assign login access
+- Save login credentials
 
-These will later be permission restricted.
-
-> 📌 Screenshot Placeholder  
-> `![Create S3 Bucket](screenshots/s3bucket.png)`
-
----
-
-### **4️⃣ Build IAM Security Policies**
-Assign:
-- Sales user → access only sales resources
-- Marketing user → access only marketing resources
-
-Example rules:
-- allow listing own bucket
-- deny access to other department bucket
-- deny modify
-- allow read/write only inside own folder
-
-> 📌 Screenshot Placeholder  
-> `![IAM Policy](screenshots/iam-policy.png)`
+🔐 Purpose  
+Users authenticate separately, ensuring accountability and identity tracking.
 
 ---
 
-### **5️⃣ Test Role Segmentation**
-Login as Sales user:
-- Should access Sales-Instance + Sales S3 only
+## **Step 2 — Create IAM Groups**
+### Actions
+- Navigate to IAM Groups
+- Create groups for each department
+  - Sales
+  - Marketing (later)
 
-Login as Marketing user:
-- Should access Marketing-Instance + Marketing S3 only
-
-Attempt cross-access:
-- should be **denied**
-
----
-
-### **6️⃣ Enable CloudTrail Logging**
-Enable AWS CloudTrail to track:
-- IAM logins
-- S3 access attempts
-- Denied actions
-- EC2 activity
-
-> 📌 Screenshot Placeholder  
-> `![CloudTrail](screenshots/cloudtrail.png)`
+🧭 Why?
+Groups simplify permission assignments and future enforcement of departmental separation.
 
 ---
 
-## 🛡 What I Learned
+## **Step 3 — Launch EC2 Instance**
+### Actions
+- Go to EC2 console
+- Launch a new instance
+- Choose Amazon Linux or Windows (as preferred)
+- Name example: **sales-instance**
+- Configure key pair
+- Launch instance
 
-✔ IAM security  
-✔ EC2 access control  
-✔ Role segmentation  
-✔ AWS resource isolation  
-✔ CloudTrail auditing  
-✔ Principle of least privilege  
-✔ User-to-instance segmentation  
-
-This directly strengthens cybersecurity skills such as:
-- security governance
-- access control
-- identity management
-- cloud hardening
-- insider threat prevention
+💡 NOTE  
+At this stage, only **one instance (Sales)** is required. Marketing EC2 instance will be created in the next phase when enforcing cross-department restrictions.
 
 ---
 
-## 🧠 Why This Matters in Cybersecurity
+## **Step 4 — Create S3 Bucket**
+### Actions
+- Go to S3 Console
+- Create bucket
+- Bucket name example:
+  - `rg-sales-bucket`
 
-This project demonstrates how security teams restrict access inside cloud environments using IAM controls. Understanding IAM is essential for preventing unauthorized access, insider threats, privilege escalation, and data exposure inside enterprise cloud infrastructures.
-
----
-
-## 🔮 Next Phase (Coming Soon)
-
-- MFA configuration
-- SCP policies (Organizations)
-- IAM Groups for department roles
-- Restricting console access
-- Restricting SSH access
-- CloudWatch monitoring
-- GuardDuty
+📦 Purpose  
+Each department will later store data separately. Segregated buckets allow granular policy enforcement.
 
 ---
 
-### 📂 Screenshots Folder
-All screenshots will be uploaded here later:
-```
-📁 /screenshots
-```
+## Step 5 — Create CloudTrail (Created Only)
+### Status
+CloudTrail has been created but not fully configured for logging policies.
+
+🔜 Will be completed in next project.
 
 ---
 
-## 🔗 Connect
-More cybersecurity labs are continuously being added. Follow this repository and my LinkedIn for updates.
+## Step 6 — IAM Role Segmentation (Pending)
+### Future actions
+- Restrict Sales user from accessing Marketing instance
+- Restrict Marketing user from accessing Sales instance
+- Enforce least privilege per department
+
+🔥 Will be implemented in Project 3.
+
+---
+
+# 🛠️ What Has Been Completed So Far
+✔ IAM users  
+✔ IAM group (Sales)  
+✔ EC2 instance (Sales)  
+✔ S3 bucket (Sales)  
+✔ CloudTrail created (partial)  
+
+---
+
+# 📌 What Will Be Completed Next
+➡ CloudTrail Logging Enforcement  
+➡ Marketing EC2  
+➡ IAM segmentation policies  
+➡ Access restriction between departments
+
+---
+
+# 💡 Key Takeaways
+- IAM identity-based security is the foundation of AWS access control
+- EC2 resources must be isolated per business unit
+- S3 bucket separation helps enforce clear data boundaries
+- CloudTrail auditing is mandatory for monitoring corporate environments
+
+---
+
+# 🧠 Skills Demonstrated
+- IAM identity creation
+- Cloud resource provisioning
+- AWS security fundamentals
+- Preparing role segmentation structures
+- Practical cloud governance understanding
+
+---
+
+## 🔜 Next Project
+**AWS IAM Access Control and Department Segmentation**
+
+This will finalize:
+- Cross-account restrictions
+- IAM permission boundaries
+- Resource-level conditions
+
+---
+
+# ✔ Status
+🟡 In-progress  
+(Current phase completed successfully – moving to access segmentation soon)
+
 
 
