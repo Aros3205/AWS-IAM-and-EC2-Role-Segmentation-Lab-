@@ -94,8 +94,9 @@ Example rules:
 ---
 
 ### **5️⃣  Create CloudTrail **
-> 📌 Screenshot Placeholder  
-> `![CloudTrail](screenshots/cloudtrail.png)`
+
+
+![AWS IAM & EC2 Role Segmentation Screenshot](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-06%20052219.png)
 
 ---
 
