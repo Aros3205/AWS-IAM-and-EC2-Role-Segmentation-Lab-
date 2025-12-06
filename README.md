@@ -71,8 +71,7 @@ Create buckets:
 
 These will later be permission restricted.
 
-> 📌 Screenshot Placeholder  
-> `![Create S3 Bucket](screenshots/s3bucket.png)`
+![AWS IAM & EC2 Role Segmentation Screenshot](screenshot/Screenshot%202025-12-05%20094504.png)
 
 ---
 
