@@ -1,309 +1,161 @@
-# AWS-IAM-and-EC2-Role-Segmentation-Lab-
-[07:06, 12/6/2025] Mr Tolu.🇺🇸: This project demonstrates how to design *segmented access control* in AWS using:
+# AWS IAM & EC2 Role Segmentation Project
 
-- *IAM users & groups*
-- *EC2 instances (per department)*
-- *S3 + CloudTrail for logging*
-- *Least privilege policies* that prevent cross-department access
+## 📌 Overview
+This project demonstrates how Identity & Access Management (IAM) principles are applied within AWS to enforce role-based access control (RBAC) between cloud resources. I designed two IAM users and two EC2 instances representing separate departments (Sales and Marketing) and applied security policies to segment privileges, preventing unauthorized resource access across departments.
 
-The goal:  
-> Sales users should only manage *Sales resources, and Marketing users should only manage **Marketing resources* — enforced through IAM policies and resource tags.
+This foundational project strengthens AWS security concepts that are essential for Cybersecurity Analysts—such as least privilege, IAM policy enforcement, cloud resource access auditing, and privilege segregation.
 
 ---
 
-## 🌐 High-Level Architecture
+## 🔥 Project Objectives
 
-- *IAM*
-  - SalesUser and MarketingUser
-  - IAM groups: SalesGroup, MarketingGroup
-  - Custom IAM policies for each group
-
-- *EC2*
-  - sales-ec2 instance (for Sales department)
-  - marketing-ec2 instance (for Marketing department)
-  - Tagged by department for policy enforcement
-
-- *S3*
-  - rg-sales-bucket (example name) for storing logs / objects
-
-- *CloudTrail*
-  - One trail capturing management events across the account
-  - Sends logs to S3 for auditing IAM and EC2 actions
+- Configure secure IAM users
+- Launch and configure EC2 instances
+- Create an S3 bucket for each department
+- Assign permissions based on job role
+- Prevent unauthorized cross-access
+- Apply least-privilege principles
+- Audit activity using CloudTrail
 
 ---
 
-## 🔐 1. IAM User & Group Setup
+## 🏗 Architecture Summary
 
-### 1.1 Create IAM Users
-
-In the AWS Console:
-
-1. Go to *IAM → Users → Add users*
-2. Create two users, for example:
-   - SalesUser
-   - MarketingUser
-3. Select:
-   - ✅ *Provide user access to the AWS Management Console*
-   - Choose *auto-generated password* or set custom
-   - ✅ User must change password on first sign-in (optional)
-
-> 📸 Screenshot example: IAM user list with SalesUser and MarketingUser  
-![IAM Users](screenshots/iam-users.png)
+| AWS Service | Purpose |
+|------------|---------|
+| IAM | Identity, access, security |
+| EC2 | Compute resource (department systems) |
+| S3 | Storage for departmental files |
+| CloudTrail | Logging and auditing |
+| IAM Policies | Access control enforcement |
 
 ---
 
-### 1.2 Create IAM Groups
+## 🚀 Step-by-Step Implementation
 
-1. Go to *IAM → User groups → Create group*
-2. Create:
-   - SalesGroup
-   - MarketingGroup
-3. For now, you can skip attaching policies (we’ll add custom ones later).
+### **1️⃣ Create IAM Users**
+- Go to **IAM → Users → Create user**
+- Create:
+  - `Sales_User`
+  - `Marketing_User`
 
-> 📸 Screenshot example: IAM groups list with SalesGroup and MarketingGroup  
-![IAM Groups](screenshots/iam-groups.png)
+🔹 Users created without admin privileges  
+🔹 Will receive access only through custom IAM policies  
 
----
-
-### 1.3 Add Users to Groups
-
-1. Open *SalesGroup → Add users*
-   - Add SalesUser
-2. Open *MarketingGroup → Add users*
-   - Add MarketingUser
-
-> 📸 Screenshot example: SalesGroup with SalesUser attached  
-![SalesGroup Members](screenshots/sales-group-members.png)
+> 📌 Screenshot Placeholder  
+> `![Create IAM User](screenshots/create-user.png)`
 
 ---
 
-## 💻 2. EC2 Instance Setup (Per Department)
+### **2️⃣ Launch EC2 Instances**
+- Navigate to **EC2**
+- Create two instances:
+  - `Sales-Instance`
+  - `Marketing-Instance`
 
-### 2.1 Create Sales EC2 Instance
-
-1. Go to *EC2 → Instances → Launch instances*
-2. Name: sales-ec2
-3. OS: e.g. *Amazon Linux 2* or *Windows Server* (depending on your lab)
-4. Instance type: t2.micro or t3.micro (free tier–eligible)
-5. Key pair: create or select an existing one
-6. Network:
-   - Default VPC
-   - Subnet: any available
-7. Tags (VERY IMPORTANT):
-   - Department = Sales
-   - Name = sales-ec2
-
-> 📸 Screenshot example: EC2 launch summary showing tags for Sales  
-![Sales EC2 Instance](screenshots/sales-ec2-instance.png)
+> 📌 Screenshot Placeholder  
+> `![EC2 Instances](screenshots/ec2.png)`
 
 ---
 
-### 2.2 Create Marketing EC2 Instance
+### **3️⃣ Create Department S3 Buckets**
+Create buckets:
+- `rg-sales-bucket`
+- `rg-marketing-bucket`
 
-Repeat the same process:
+These will later be permission restricted.
 
-- Name: marketing-ec2
-- Tags:
-  - Department = Marketing
-  - Name = marketing-ec2
-
-> 📸 Screenshot example: EC2 list with both Sales & Marketing instances  
-![Both EC2 Instances](screenshots/ec2-both-instances.png)
-
-You can keep only one instance running at a time to save cost.
+> 📌 Screenshot Placeholder  
+> `![Create S3 Bucket](screenshots/s3bucket.png)`
 
 ---
 
-## 📦 3. S3 Bucket for Logs (Optional but Recommended)
+### **4️⃣ Build IAM Security Policies**
+Assign:
+- Sales user → access only sales resources
+- Marketing user → access only marketing resources
 
-To centralize logs (CloudTrail + app logs):
+Example rules:
+- allow listing own bucket
+- deny access to other department bucket
+- deny modify
+- allow read/write only inside own folder
 
-1. Go to *S3 → Create bucket*
-2. Name example: rg-sales-bucket (must be globally unique)
-3. Region: same as EC2 if possible
-4. Block Public Access: ✅ keep public access blocked
-5. Create bucket
-
-> 📸 Screenshot example: S3 bucket list with rg-sales-bucket  
-![S3 Bucket](screenshots/s3-rg-sales-bucket.png)
-
-You can later use this bucket as a *CloudTrail destination*.
-
----
-
-## 🕵️‍♂️ 4. Enable CloudTrail for Auditing
-
-1. Go to *CloudTrail → Trails → Create trail*
-2. Trail name: rg-org-trail
-3. Storage location:
-   - Choose existing bucket: rg-sales-bucket
-4. Event type:
-   - ✅ Management events (Read + Write)
-5. Create trail
-
-> 📸 Screenshot example: CloudTrail trail overview page  
-![CloudTrail Trail](screenshots/cloudtrail-trail-overview.png)
-
-Now *every action* (like starting/stopping EC2, changing IAM, etc.) is logged and visible in *Event history*.
-
-> 📸 Screenshot example: Event history showing EC2 & IAM actions  
-![CloudTrail Event History](screenshots/cloudtrail-event-history.png)
+> 📌 Screenshot Placeholder  
+> `![IAM Policy](screenshots/iam-policy.png)`
 
 ---
 
-## 🧱 5. IAM Policies for Department Segmentation
+### **5️⃣ Test Role Segmentation**
+Login as Sales user:
+- Should access Sales-Instance + Sales S3 only
 
-Now we enforce *who can manage what*.
+Login as Marketing user:
+- Should access Marketing-Instance + Marketing S3 only
 
-### 5.1 Design Principle
-
-- *SalesGroup*:
-  - Can Start/Stop/Describe only sales-ec2
-  - Cannot affect marketing-ec2
-- *MarketingGroup*:
-  - Can Start/Stop/Describe only marketing-ec2
-  - Cannot affect sales-ec2
-
-We can do this using *IAM policy conditions on tags*.
+Attempt cross-access:
+- should be **denied**
 
 ---
 
-### 5.2 Example Policy for SalesGroup
+### **6️⃣ Enable CloudTrail Logging**
+Enable AWS CloudTrail to track:
+- IAM logins
+- S3 access attempts
+- Denied actions
+- EC2 activity
 
-Create a new policy:
+> 📌 Screenshot Placeholder  
+> `![CloudTrail](screenshots/cloudtrail.png)`
 
-1. Go to *IAM → Policies → Create policy → JSON*
-2. Use something like:
+---
 
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "AllowDescribeInstances",
-      "Effect": "Allow",
-      "Action": [
-        "ec2:DescribeInstances"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Sid": "AllowSalesInstanceControl",
-      "Effect": "Allow",
-      "Action": [
-        "ec2:StartInstances",
-        "ec2:StopInstances",
-        "ec2:RebootInstances"
-      ],
-      "Resource": "*",
-      "Condition": {
-        "StringEquals": {
-          "ec2:ResourceTag/Department": "Sales"
-        }
-      }
-    }
-  ]
-}
-[07:07, 12/6/2025] Mr Tolu.🇺🇸: 3.	Name it: Sales-EC2-Access-Policy
+## 🛡 What I Learned
 
-📸 Screenshot example: JSON policy editor for Sales group
-![Sales IAM Policy](screenshots/iam-policy-sales.png)
+✔ IAM security  
+✔ EC2 access control  
+✔ Role segmentation  
+✔ AWS resource isolation  
+✔ CloudTrail auditing  
+✔ Principle of least privilege  
+✔ User-to-instance segmentation  
 
-Attach this policy to SalesGroup.
+This directly strengthens cybersecurity skills such as:
+- security governance
+- access control
+- identity management
+- cloud hardening
+- insider threat prevention
 
-⸻
+---
 
-5.3 Example Policy for MarketingGroup
+## 🧠 Why This Matters in Cybersecurity
 
-Similar concept, but for Marketing:
-[07:07, 12/6/2025] Mr Tolu.🇺🇸: {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "AllowDescribeInstances",
-      "Effect": "Allow",
-      "Action": [
-        "ec2:DescribeInstances"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Sid": "AllowMarketingInstanceControl",
-      "Effect": "Allow",
-      "Action": [
-        "ec2:StartInstances",
-        "ec2:StopInstances",
-        "ec2:RebootInstances"
-      ],
-      "Resource": "*",
-      "Condition": {
-        "StringEquals": {
-          "ec2:ResourceTag/Department": "Marketing"
-        }
-      }
-    }
-  ]
-}
-[07:08, 12/6/2025] Mr Tolu.🇺🇸: Name it: Marketing-EC2-Access-Policy, and attach to MarketingGroup.
+This project demonstrates how security teams restrict access inside cloud environments using IAM controls. Understanding IAM is essential for preventing unauthorized access, insider threats, privilege escalation, and data exposure inside enterprise cloud infrastructures.
 
-📸 Screenshot example: Policy attached to MarketingGroup
-![Marketing IAM Policy](screenshots/iam-policy-marketing.png)
+---
 
-⸻
+## 🔮 Next Phase (Coming Soon)
 
-🧪 6. Testing the Segmentation
+- MFA configuration
+- SCP policies (Organizations)
+- IAM Groups for department roles
+- Restricting console access
+- Restricting SSH access
+- CloudWatch monitoring
+- GuardDuty
 
-6.1 Log in as SalesUser
-	1.	Log out of root account
-	2.	Log in at: IAM sign-in URL with:
-	•	Username: SalesUser
-	3.	Go to EC2 → Instances
+---
 
-Expected:
-	•	✅ SalesUser can see both instances (because Describe is allowed)
-	•	✅ Can Start/Stop sales-ec2
-	•	❌ Gets AccessDenied when trying to Start/Stop marketing-ec2
+### 📂 Screenshots Folder
+All screenshots will be uploaded here later:
+```
+📁 /screenshots
+```
 
-📸 Screenshot example: Access Denied on Marketing instance
-![SalesUser Access Denied](screenshots/salesuser-access-denied-marketing.png)
+---
 
-⸻
+## 🔗 Connect
+More cybersecurity labs are continuously being added. Follow this repository and my LinkedIn for updates.
 
-6.2 Log in as MarketingUser
 
-Repeat with MarketingUser.
-
-Expected:
-  .	✅ Can manage marketing-ec2
-	•	❌ Cannot start/stop sales-ec2
-
-📸 Screenshot example: Marketing user blocked from sales instance
-![MarketingUser Access Denied](screenshots/marketinguser-access-denied-sales.png)
-
-⸻
-
-📊 7. Verifying in CloudTrail
-
-In CloudTrail → Event history, filter by:
-	•	Event source: ec2.amazonaws.com
-	•	User name: SalesUser or MarketingUser
-
-You should see:
-	•	Successful actions on the allowed instance
-	•	AccessDenied events for blocked actions
-
-📸 Screenshot example: CloudTrail showing both success and denied events
-![CloudTrail Access Logs](screenshots/cloudtrail-access-denied.png)
-
-This proves your IAM + EC2 + tagging strategy is working as designed.
-
-⸻
-
-✅ Summary
-
-In this lab you:
-	•	Created dedicated IAM users & groups for Sales and Marketing
-	•	Deployed separate EC2 instances per department
-	•	Applied resource tags to drive access control
-	•	Built least-privilege IAM policies allowing each group to manage only their own resources
-	•	Enabled CloudTrail and optionally S3 logging for auditing all actionarketing…
