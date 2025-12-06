@@ -45,7 +45,7 @@ This foundational project strengthens AWS security concepts that are essential f
 > 📌 Screenshot Placeholder  
 >![Screenshot](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-05%20084003.png)
 
----
+![EC2 Role Segmentation – Instance Overview](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-05%20084741.png)
 
 ### **2️⃣ Launch EC2 Instances**
 - Navigate to **EC2**
