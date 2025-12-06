@@ -56,7 +56,7 @@ This foundational project strengthens AWS security concepts that are essential f
   - `Sales-Instance`
   - `Marketing-Instance`
 
-> ![AWS IAM & EC2 Role Segmentation — Screenshot](/mnt/data/IMG_F1022E39-E5A9-45CA-9BD3-F1AB153C35E7.jpeg)
+![Screenshot](https://github.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/raw/main/screenshot/Screenshot%202025-12-05%20095606.png)
 
 
 ---
