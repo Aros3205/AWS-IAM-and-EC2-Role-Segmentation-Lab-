@@ -58,6 +58,7 @@ This foundational project strengthens AWS security concepts that are essential f
 
 ![Screenshot](https://github.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/raw/main/screenshot/Screenshot%202025-12-05%20095606.png)
 
+![AWS IAM & EC2 – Example Screenshot](screenshot/Screenshot%202025-12-05%20095134.png)
 
 ---
 
