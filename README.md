@@ -43,7 +43,7 @@ This foundational project strengthens AWS security concepts that are essential f
 🔹 Will receive access only through custom IAM policies  
 
 > 📌 Screenshot Placeholder  
-> `![Create IAM User](screenshots/create-user.png)`
+>![Screenshot](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-05%20084003.png)
 
 ---
 
