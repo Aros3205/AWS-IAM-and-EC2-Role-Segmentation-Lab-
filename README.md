@@ -44,9 +44,12 @@ This foundational project strengthens AWS security concepts that are essential f
 
 > 📌 Screenshot Placeholder  
 
+
 ![EC2 Role Segmentation – Instance Overview](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-05%20084741.png)
 
+
 >![Screenshot](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-05%20084003.png)
+
 
 ![Screenshot](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-05%20084102.png)
 
@@ -59,7 +62,9 @@ This foundational project strengthens AWS security concepts that are essential f
 
 ![AWS IAM & EC2 – Example Screenshot](screenshot/Screenshot%202025-12-05%20095134.png)
 
+
 ![Screenshot](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-05%20094504.png)
+
 
 ![Screenshot](https://github.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/raw/main/screenshot/Screenshot%202025-12-05%20095606.png)
 
@@ -71,9 +76,12 @@ Create buckets:
 
 These will later be permission restricted.
 
+
 ![Screenshot](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-06%20044614.png)
 
+
 ![](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-06%20045414.png)
+
 
 ![AWS Segmentation](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-06%20045601.png)
 
@@ -89,11 +97,12 @@ Example rules:
 - deny modify
 - allow read/write only inside own folder
 
+
 ![AWS IAM & EC2 Screenshot](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-05%20084712.png)
 
 ---
 
-### **5️⃣  Create CloudTrail **
+### 5️⃣  Create CloudTrail 
 
 
 ![AWS IAM & EC2 Role Segmentation Screenshot](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-06%20052219.png)
