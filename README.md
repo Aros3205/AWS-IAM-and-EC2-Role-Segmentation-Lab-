@@ -42,8 +42,6 @@ This foundational project strengthens AWS security concepts that are essential f
 🔹 Users created without admin privileges  
 🔹 Will receive access only through custom IAM policies  
 
-> 📌 Screenshot Placeholder  
-
 
 ![EC2 Role Segmentation – Instance Overview](https://raw.githubusercontent.com/Aros3205/AWS-IAM-and-EC2-Role-Segmentation-Lab-/main/screenshot/Screenshot%202025-12-05%20084741.png)
 
@@ -134,8 +132,7 @@ This project demonstrates how security teams restrict access inside cloud enviro
 
 ---
 
-## 🔮 Next Phase (Coming Soon)
-
+## 🔮 Next Phase
 - MFA configuration
 - SCP policies (Organizations)
 - IAM Groups for department roles
@@ -150,3 +147,4 @@ This project demonstrates how security teams restrict access inside cloud enviro
 ## 🔗 Connect
 More cybersecurity labs are continuously being added. Follow this repository and my LinkedIn for updates.
 
+www.linkedin.com/in/tolulope-richard-arowobusoye-1a796634a
